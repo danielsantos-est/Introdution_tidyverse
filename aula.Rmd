@@ -1,0 +1,45 @@
+---
+title: "Introdução ao Tidyverse"
+author: "Daniel jacinto, Jamily Santos e Raul Lima"
+date: "29 de abril de 2019"
+output: 
+  beamer_presentation:
+    theme: "default"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## O que é tidyverse?
+- Hadley Wickham
+ 
+ - Tidyverse
+    
+    - readr
+    
+    - tidyr
+ 
+    - dplyr
+ 
+    - ggplot
+
+
+```{r, fig.align='right', out.width='25%', fig.cap=''}
+knitr::include_graphics('Hadley_Wickham.jpg')
+```
+
+## Readr
+  - Qual seu diferêncial?
+
+```{r, collapse=TRUE, echo= TRUE}
+library(readr)
+```
+
+## Tidyr
+
+## dplyr
+
+## ggplot
