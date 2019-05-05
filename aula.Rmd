@@ -1,12 +1,13 @@
 ---
 title: "Introdução ao Tidyverse"
-author: "Daniel jacinto, Jamily Santos e Raul Lima"
+author: "Daniel Jacinto, Jamily Santos e Raul Lima"
 date: "29 de abril de 2019"
-output: 
+output:
+  slidy_presentation: default
   beamer_presentation:
-    theme: "default"
-    colortheme: "dolphin"
-    fonttheme: "structurebold"
+    colortheme: dolphin
+    fonttheme: structurebold
+    theme: default
 ---
 
 ```{r setup, include=FALSE}
@@ -25,6 +26,8 @@ knitr::opts_chunk$set(echo = FALSE)
     - dplyr
  
     - ggplot
+    
+    - forcats
 
 
 ```{r, fig.align='right', out.width='25%', fig.cap=''}
@@ -32,14 +35,62 @@ knitr::include_graphics('Hadley_Wickham.jpg')
 ```
 
 ## Readr
-  - Qual seu diferêncial?
+  - Qual seu diferencial?
+  
+  O readr pacote foi desenvolvido para lidar rapidamente com a leitura em grandes arquivos planos.
+  
+  O pacote fornece substituições para funções como read.table() e read.csv(). As funções análogas em readr são read_table() e read_csv(). Essas funções são frequentemente muito mais rápidas do que seus análogos R e fornecem alguns outros recursos interessantes.
 
-```{r, collapse=TRUE, echo= TRUE}
+```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE}
+#Utilizando função nativa
+read.csv("fullbusiness.csv")
+
+#Utilizando função do pacote readr
 library(readr)
+read_csv("fullbusiness.csv")
 ```
+##
+
+  - Arquivo separado por " , "
+```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE,error=FALSE}
+#read_csv()
+```
+  - Arquivo separado por " ; "
+```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE,error=FALSE}
+#read_csv2()
+```
+  - Arquivo separado por espaço
+```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE,error=FALSE}
+#read_tsv()
+#read_table2()
+```
+## Exercícios
+
+  - Importe o banco de dados fullbusiness
+  
+  - Importe o banco de dados titanic
+  
+  - Importe o banco de dados urine
+
+## Complemento
+
+  - Dados do tipo Excel (.xlsx)
+```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE,error=FALSE}
+#read_xlsx()
+```
+
+  - Importar banco de dados melanoma
+
+```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE}
+library(readxl)
+read_xlsx("melanoma.xlsx")
+```
+
 
 ## Tidyr
 
 ## dplyr
 
 ## ggplot
+
+## forcats
