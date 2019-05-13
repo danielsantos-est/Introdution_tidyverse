@@ -44,7 +44,6 @@ knitr::include_graphics('Hadley_Wickham.jpg')
 ```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE}
 #Utilizando função nativa
 read.csv("fullbusiness.csv")
-
 #Utilizando função do pacote readr
 library(readr)
 read_csv("fullbusiness.csv")
@@ -87,9 +86,84 @@ read_xlsx("melanoma.xlsx")
 ```
 
 
+## dplyr
+
+- `select()`
+
+- `filter()`
+
+- `group_by()` e `summarise()`
+
+- `arrange()`
+
+
+
+## `select()`
+
+Função que seleciona ou retira determinada variável do seu data frame (coluna, campo, feature, ...).
+
+Selecionando variáveis:
+```{r, message=FALSE, echo=TRUE}
+library(dplyr)
+fullbusiness <- read_csv("fullbusiness.csv")
+#head(fullbusiness)
+renda_zona <- fullbusiness %>% select(Zone, Income)
+#head(renda_zona)
+```
+Retirando variáveis:
+```{r, echo=TRUE}
+sem_spam <- fullbusiness %>% select(-SPAM)
+#head(sem_spam)
+```
+
+## `filter()`
+
+Função que cria condições para selecionar determinado tipo de variável.
+
+Utilizando o banco de dados fullbusiness pedemos separar pela categoria da variavel level.
+```{r,echo=TRUE, collapse=FALSE}
+table(fullbusiness$Level)
+medium <- fullbusiness %>% filter(Level == "Medium")
+table(medium$Level)
+```
+
+## `group_by()` e `summarise()`
+
+São operadores que trabalham na agregação dos dados, ou seja, é feito um resumo dos dados para cada grupo.
+
+O `group_by()` separa os grupos que se deseja selecionar, já o `summarise()` faz o resumo dos dados para cada grupo.
+
+```{r, echo=TRUE}
+library(TeachingSampling)
+data("BigLucy")
+#head(BigLucy)
+
+exemplo <- BigLucy %>% filter(Years >= 10) %>% group_by(Level) %>%
+summarise(total_empresas = n(), media_renda = sum(Income), media_taxas = mean(Taxes))
+exemplo
+```
+
+
+
+## `arrange()`
+Serve para organizar os dados em sua ordenação.
+
+```{r, echo=TRUE}
+fullbusiness %>% select(Level, Employees, Income) %>%
+group_by(Level) %>%
+summarise(mean_employees = mean(Employees), mean_income = mean(Income)) %>% arrange()
+```
+
+
 ## Tidyr
 
-## dplyr
+- `gather()`
+
+- `separeter()`
+
+- `spread()`
+
+- `unite()`
 
 ## ggplot
 
