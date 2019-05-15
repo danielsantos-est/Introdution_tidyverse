@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = FALSE)
     - forcats
 
 
-```{r, fig.align='right', out.width='25%', fig.cap=''}
+```{r, fig.align='right', out.width='20%', fig.cap='', fig.show='hold'}
 knitr::include_graphics('Hadley_Wickham.jpg')
 ```
 
@@ -152,6 +152,22 @@ Serve para organizar os dados em sua ordenação.
 fullbusiness %>% select(Level, Employees, Income) %>%
 group_by(Level) %>%
 summarise(mean_employees = mean(Employees), mean_income = mean(Income)) %>% arrange()
+```
+
+## Exercício
+
+- Utilizando o banco de dados `"flights"` do pacote `nycflights13`, selecione as variáveis mês, `arr_delay` e `arr_delay` para fazer uma tabela com a média dos atrasos dos meses ordenadas pela média dos atrasos das partidas.
+
+Dica: usar `mean(, na.rm = TRUE)`
+
+## 
+```{r,echo=TRUE}
+library(nycflights13)
+data("flights")
+#str(flights)
+flights %>% select(month, arr_delay, dep_delay) %>% group_by(month) %>% 
+  summarise(dep_delay_mean = mean(dep_delay, na.rm =  TRUE),arr_delay_mean = mean(arr_delay, na.rm = TRUE)) %>%
+  arrange(dep_delay_mean)
 ```
 
 
