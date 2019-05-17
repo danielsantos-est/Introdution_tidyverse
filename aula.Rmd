@@ -83,6 +83,7 @@ read_csv("fullbusiness.csv")
 ```{r, echo=TRUE, collapse=TRUE,results='hide',message=FALSE}
 library(readxl)
 read_xlsx("melanoma.xlsx")
+
 ```
 
 
@@ -175,11 +176,59 @@ flights %>% select(month, arr_delay, dep_delay) %>% group_by(month) %>%
 
 - `gather()`
 
-- `separeter()`
-
 - `spread()`
 
+- `separete()`
+
 - `unite()`
+
+```{r, echo=FALSE}
+library(tidyr)
+```
+
+## 
+```{r, fig.align='center', out.width='55%', fig.cap='', fig.show='hold'}
+knitr::include_graphics('tabela_explicativa.png')
+```
+
+## `gather()`
+Utilizada para agrupar duas ou mais colunas e seus respectivos valores em pares, assim  o resultado apoós o agrupamento é sempre duas colunas
+
+Nesse comando o primeiro informa-se a coluna que aguarda as variáveis das linhas, segundo informa-se os valores de cada linhas.
+```{r, echo=TRUE}
+data("USArrests")
+head(USArrests)
+USArrests$State <- rownames(USArrests)
+us_long <- USArrests %>% gather(key =  "tipo_crime", value = "valor", -State)
+head( us_long)
+```
+
+
+## `spread()`
+É o oposto do comando anterior, transforma as variavei de uma coluna em linhas.
+
+```{r, echo=TRUE}
+head(table2)
+table2 %>% spread(key = type, value =  count)
+```
+
+## `separete()`
+Usado para separar duas variáveis que estão na mesma coluna.
+```{r, echo=TRUE}
+table3[1:3,]
+
+dados_separado <- table3 %>% separate(rate, into = c("cases", "population"), sep = "/")
+dados_separado[1:3,]
+
+```
+
+## `unite()`
+
+Sendo o oposto da função anterior, ela duas colunas e as tranforma em uma.
+```{r, echo=TRUE}
+table2 %>% unite(type_year, type, year) %>% spread(key = type_year, value = count, sep = '_')
+```
+
 
 ## ggplot
 
